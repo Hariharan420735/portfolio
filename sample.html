@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+    }
+
+    .head {
+      height: 80px;
+      width: 100vw;
+      display: flex;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      position: fixed;
+    }
+
+    .headone {
+      height: 80px;
+      width: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .photo {
+      height: 70px;
+      width: 70px;
+      border-radius: 50px;
+    }
+
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      animation: slideIn 0.4s ease forwards;
+    }
+
+    #overlay.hide {
+      animation: slideOut 0.4s ease forwards;
+    }
+
+    #overlay img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: imageFadeIn 0.4s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+    }
+
+    @keyframes imageFadeIn {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .headtwo {
+      height: 80px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      word-spacing: 100;
+    }
+
+    section {
+      color: black;
+      padding: 100px 20px;
+      min-height: 100vh;
+    }
+
+    .certificategallery {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .certificategallery img {
+      width: 300px;
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 10px #00ffff;
+      border-radius: 6px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    #certificate {
+      padding: 20px;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      display: flex;
+      justify-content: center;
+    }
+
+    #certificate h2 {
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 10px;
+    }
+
+    .certificate-scroll {
+      max-height: 400px;
+      max-width: 450px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+    }
+
+    .certificate-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .certificate-scroll::-webkit-scrollbar-track {
+      background: #0d1b4c;
+      border-radius: 10px;
+    }
+
+    .certificate-scroll::-webkit-scrollbar-thumb {
+      background: #ffffff;
+      border-radius: 10px;
+      border: 2px solid #1a237e;
+    }
+
+    .certificate-scroll::-webkit-scrollbar-thumb:hover {
+      background: #cfd8dc;
+    }
+
+    .certificate-card {
+      padding: 15px;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      font-family: 'Roboto', sans-serif;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .certificate-card img {
+      height: 300px;
+    }
+
+    #long img {
+      width: 430px;
+    }
+
+    #home {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .intro-line {
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #ffcc70, #ff6f91);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInTop 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .intro-subline {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      color: #ffffff;
+      animation: fadeInBottom 2s ease-out forwards;
+      opacity: 0;
+      animation-delay: 1s;
+    }
+
+    @keyframes fadeInTop {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInBottom {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #about {
+      padding: 60px 20px;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 60vh;
+    }
+
+    .about-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      line-height: 1.6;
+      color: #f5f5f5;
+      max-width: 700px;
+      text-align: center;
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 2s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #projects {
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+    }
+
+    #contact {
+      padding: 50px 20px;
+      text-align: center;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+    }
+
+    .contact-section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-family: 'Poppins', sans-serif;
+      color: #ffcc70;
+    }
+
+    .contact-details p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      font-family: 'Poppins', sans-serif;
+      background: #2c2c2c;
+      padding: 12px 20px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-details p:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="head">
+    <div class="headone">
+      <img src="hari.jpeg" alt="" class="photo" onclick="openImage(this)" />
+    </div>
+    <div class="headtwo">
+      <nav class="a">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#certificate">Certificates</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div id="overlay" onclick="closeImage()">
+      <img id="fullImage" src="" />
+      <span class="close-btn">×</span>
+    </div>
+  </div>
+
+  <section id="home" class="section">
+    <h1 class="intro-line">Hello, I'm HARIHARAN P</h1>
+    <h1 class="intro-subline">Web Developer</h1>
+  </section>
+
+  <section id="about" class="section">
+    <p class="about-text">
+      I’m Hariharan — a passionate developer and designer from Tamil Nadu.<br>
+      I craft expressive, functional web experiences that blend art and code.
+    </p>
+  </section>
+
+  <section id="certificate" class="section">
+    <div class="certificate-scroll">
+      <div class="certificate-card">Certificate 1
+        <img src="1.png" alt="">
+      </div>
+      <div class="certificate-card" id="long">Certificate 2
+        <img src="2.png" alt="">
+      </div>
+      <div class="certificate-card">Certificate 3
+        <img src="3.png" alt="">
+      </div>
+      <div class="certificate-card">Certificate 4
+        <img src="4.png" alt="">
+      </div>
+      <div class="certificate-card">Certificate 5
+        <img src="5.png" alt="">
+      </div>
+      <div class="certificate-card">Certificate 6
+        <img src="6.png" alt="">
+      </div>
+      <div class="certificate-card">Certificate 7
+        <img src="7.png" alt="">
+      </div>
+      <div class="certificate-card">Certificate 8
+        <img src="8.png" alt="">
+      </div>
+      <div class="certificate-card">Certificate 9
+        <img src="9.png" alt="">
+      </div>
+      <div class="certificate-card">Certificate 10
+        <img src="10.png" alt="">
+      </div>
+
+  </section>
+
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+    <ul>
+      <li>Project 1 – Description</li>
+      <li>Project 2 – Description</li>
+      <li>Project 3 – Description</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Let's Connect</h2>
+    <div class="contact-details">
+      <p>
+        <span>📧</span>
+        <a href="mailto:hh1579264@gmail.com">hh1579264@gmail.com</a>
+      </p>
+      <p>
+        <span>📞</span>
+        <a href="tel:+918667274138">+91 86672 74138</a>
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Hariharan p</p>
+  </footer>
+</body>
+<script>
+  function openImage(img) {
+    const overlay = document.getElementById("overlay");
+    const fullImage = document.getElementById("fullImage");
+    fullImage.src = img.src;
+    overlay.classList.remove("hide");
+    overlay.style.display = "flex";
+
+  }
+
+  function closeImage() {
+    const overlay = document.getElementById("overlay");
+    overlay.classList.add("hide");
+    setTimeout(() => {
+      overlay.style.display = "none";
+      overlay.classList.remove("hide");
+    }, 400);
+  }
+
+  document.querySelectorAll("nav a").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href").substring(1);
+      const target = document.getElementById(targetId);
+      const offset = 60; // adjust for fixed header
+
+      window.scrollTo({
+        top: target.offsetTop - offset,
+        behavior: "smooth",
+      });
+    });
+  });
+</script>
+
+</html>
